@@ -3,7 +3,6 @@ package com.example.maintenanceuser1.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,13 +10,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MainteUserController {
 
-	@GetMapping("user-top")
+	@GetMapping("admin")
 	private String userTop() {
-		return "user-top";
+		return "admin/admin-top";
 	}
-	@PostMapping("search-user")
+	@GetMapping("user-search-list")
 	private String searchUser(Model mv) {
 		
-		return "user-top";
+		return "admin/user-top";
 	}
 }
