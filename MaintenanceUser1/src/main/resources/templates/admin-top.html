@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タスク一覧</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2>ユーザ管理メニュー</h2>
+	
+	<div>
+	    <form th:action="@{/user-search-list}" method="POST">
+			<input type="submit" value="ユーザ検索" class="btn">
+	  	</form>
+	</div>
+</body>
+</html>

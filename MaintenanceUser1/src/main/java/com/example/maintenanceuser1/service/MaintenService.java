@@ -2,9 +2,9 @@ package com.example.maintenanceuser1.service;
 
 import java.util.List;
 
-import com.example.maintenanceuser1.entity.user;
+import com.example.maintenanceuser1.entity.User;
 
 public interface MaintenService {
 
-	List<user>  findListAll();
+	List<User>  findListAll();
 }

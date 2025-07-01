@@ -3,7 +3,9 @@ package com.example.maintenanceuser1.entity;
 import lombok.Data;
 
 @Data
-public class area {
+public class User {
+	private Integer userId;
+	private String userName;
 	private String areaCode;
-	private String areaName;
+	private String email;
 }
