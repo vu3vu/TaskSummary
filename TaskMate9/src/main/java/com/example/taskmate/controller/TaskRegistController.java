@@ -18,6 +18,15 @@ public class TaskRegistController {
 		
 		//登録画面へ
 		return "task-regist";
+		
+	/*	 なぜ @ModelAttribute で渡すと使えるようになるのか？
+		 Spring MVCの動作：
+		 メソッドの引数に @ModelAttribute をつけておくと、Springがそのクラスのオブジェクト（ここでは TaskRegistForm）を作成して、自動でModelに追加してくれます。
+
+		 つまり、明示的に model.addAttribute("taskRegistForm", form); と書かなくても、Springが自動的にやってくれる。
+	}
+	*/
+		
 	}
 	/* タスク登録リクエスト（登録画面より） */
 	@PostMapping("/task-regist")
@@ -32,7 +41,7 @@ public class TaskRegistController {
 		return "task-confirm-regist";
 	}
 	/* タスク登録リクエスト（登録画面より）*/
-	@PostMapping("/taks-confirm-regist")
+	@PostMapping("/task-confirm-regist")
 	public String confirmRegist(@Validated @ModelAttribute TaskRegistForm form,BindingResult result,RedirectAttributes redirectAttributes) {
 		
 		//RedirectAttributes はPRGパターン（POST後にフォーム２重送信防止）

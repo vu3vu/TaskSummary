@@ -13,7 +13,7 @@ public class TaskRegistForm {
 	
 	private Date limitDate;
 	
-	@Size(min=2,max=2,message="指定に誤り")
+	@Size(min=1,max=2,message="指定に誤り")
 	private String statusCode;
 	
 	@Size(max=64,message="64文字以内")
