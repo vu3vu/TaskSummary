@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.maintenanceuser1.mapper.MaintenUserAdd">
+
+	<resultMap  id="userAdd" 
+			    type="com.example.maintenanceuser1.entity.User">
+		<id     property="userId"    column="user_id" />
+		<result property="userName"  column="user_name" />
+		<result property="areaCode" column="area_code" />
+		<result property="email"   column="email" />
+		<association property="area" javaType="com.example.maintenanceuser1.entity.Area">
+			<result  property="areaName" column="area_name" />
+		</association>
+	</resultMap>
+	
+	
+		<!-- *******************登録 *********************** mapperの抽象メソッド名のisertをidにする-->
+	<insert id="insert" parameterType="com.example.maintenanceuser1.entity.User">
+		Insert into m_user (user_name,area_code,email)
+		values( #{user.userName},#{user.areaCode},#{user.email})
+	</insert>
+	
+	<select id="selectAll"
+			resultMap="userAdd">
+		SELECT tt.user_id, tt.user_name, tt.area_code, 
+			   ms.area_name, tt.email
+		  FROM m_user tt
+			   INNER JOIN m_area ms
+					 ON tt.area_code = ms.area_code
+	  ORDER BY tt.user_id
+	</select>	
+	
+
+</mapper>

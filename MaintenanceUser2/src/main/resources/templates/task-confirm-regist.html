@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>USER登録確認</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+<h2>USER登録確認</h2>
+
+<table class="detail-table" th:object="${maintenForm}">
+	<tr>
+		<td class="guide">【USEr名】</td>
+		<td th:text="*{userName}"></td>
+	</tr>
+	<tr>
+		<td class="guide">【地域コード】</td>
+		<td th:text="*{areaCode + ':' + areaName}"></td>
+	</tr>
+	<tr>
+		<td class="guide">【email】</td>
+		<td th:text="*{email}"></td>
+	</tr>
+</table>
+<br>
+
+<form th:action="@{/task-confirm-regist}" method="POST" 
+		th:object="${maintenForm}">
+    <input type="hidden" th:field="*{userName}">
+    <input type="hidden" th:field="*{areaCode}">
+    <input type="hidden" th:field="*{email}">
+    <input type="submit" value="登録実行" class="btn">
+</form>
+
+<form th:action="@{/add-user}" method="POST"
+	th:object="${maintenForm}">
+	<input type="hidden" th:field="*{userName}">
+	<input type="hidden" th:field="*{areaCode}">
+	<input type="hidden" th:field="*{email}">
+   	<input type="submit" value="もどる" class="btn">
+</form>
+
+</body>
+</html>

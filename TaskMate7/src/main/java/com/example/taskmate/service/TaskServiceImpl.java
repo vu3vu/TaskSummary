@@ -18,7 +18,7 @@ public class TaskServiceImpl implements TaskService {
 	private final TaskRepository taskRepository;
 	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) //トランザクション処理をおこなうときはサービス層のメソッドに実装
 	public List<TaskSummary> findListAll() {
 		
 		List<TaskSummary> list =taskRepository.selectListAll();

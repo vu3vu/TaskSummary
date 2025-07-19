@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.maintenanceuser1.mapper.MaintenMapper">
+
+	<!-- **************** 一覧全件検索 **************** -->
+	<!-- resultMap（１対１の関係を含む） -->
+	<resultMap  id="taskList" 
+			    type="com.example.maintenanceuser1.entity.User">
+		<id     property="userId"    column="user_id" />
+		<result property="userName"  column="user_name" />
+		<result property="areaCode" column="area_code" />
+		<result property="email"   column="email" />
+
+	</resultMap>
+	<!-- 一覧検索 -->
+	<select id="selectListAll"
+			resultMap="taskList">
+		select * from m_user
+	</select>
+
+		<!-- 一覧検索 -->
+	<select id="findAreaCode"
+			parameterType="com.example.maintenanceuser1.entity.Area">
+		SELECT area_name from m_area 
+		WHERE area_code = #{areaCode}
+
+	</select>	
+		<!-- 全権検索 -->
+	<select id="selectAreaAll"
+			parameterType="com.example.maintenanceuser1.entity.Area">
+		SELECT * from m_area 
+	  	 ORDER BY area_code
+	</select>	
+</mapper>

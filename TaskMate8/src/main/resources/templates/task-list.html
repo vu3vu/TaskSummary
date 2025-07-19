@@ -19,13 +19,14 @@
 
 	<table class="task-list">
 		<tr>
-			<th>タスクID</th><th>タスク名</th><th>期限</th><th>ステータス</th>
+			<th>タスクID</th><th>タスク名</th><th>期限</th><th>ステータス</th><th>メモ件数</th>
 		</tr>
 		<tr th:each="task : ${taskSummaryList}">
 			<td th:text="${task.taskId}"></td>
 			<td th:text="${task.taskName}"></td>
 			<td th:text="${task.limitDate}"></td>
-			<td th:text="${task.statusCode}"></td>
+			<td th:text="${task.status.statusCode+ ':' + task.status.statusName}"></td>
+			<td th:text="${task.memoCnt}"></td>
 		</tr>
 
 	</table>

@@ -19,11 +19,14 @@ public class MainteUserController {
 
 	private final MaintenService maintenService;
 	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
 	@GetMapping("/admin")
 	public String userTop() {
 		return "admin-top";
-	}
-	
+	}	
 	@PostMapping("/user-search-list")
 	public String userserach() {
 		return "user-top";

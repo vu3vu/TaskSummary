@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>USER登録</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>USER登録</h2>
+
+<form th:action="@{/task-show-regist}" method="POST" th:object="${maintenForm}"> 
+	<!-- thでformオブジェクトを指定 　フォームに値を入力させて登録ボタンを押したときpostされるデータがth:objectとすることで
+	その下のth:fieldなどで使えるようになる
+	taskRegistFormはコントローラからModelにセットさえたオブジェクトを参照している
+-->
+
+<table class="detail-table">
+	<tr>
+		<td class="guide">【USER名】</td>
+		<td>
+		   	<input type="text" th:field="*{userName}"><br>
+		   	<div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="error-msg"></div>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="guide">【地域コード】</td>
+		<td>
+
+			<select th:field="*{areaCode}">
+				<option th:each="area : ${Area}" 
+				        th:value="${area.areaCode}"
+						th:text="${area.areaCode + ':' + area.areaName}"
+						th:selected="${area.areaCode == areaCode}">
+				</option>
+				
+			</select>			
+
+			
+			
+		   	<div th:if="${#fields.hasErrors('areaCode')}" th:errors="*{areaCode}" class="error-msg"></div>
+		</td>
+	</tr>
+	<tr>
+		<td class="guide">【email】</td>
+		<td>
+		   	<input type="text" th:field="*{email}" class="long"><br>
+		   	<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-msg"></div>
+		</td>
+	</tr>
+</table>
+
+<input type="submit" value="登録" class="btn">
+
+</form>
+
+<br>
+<a th:href="@{/admin}">トップページに戻る</a>
+
+</body>
+</html>
