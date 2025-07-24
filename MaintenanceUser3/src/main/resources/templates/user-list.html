@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>タスク一覧</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+
+<!-- ------------検索---------------- -->
+<h2>ユーザ検索</h2>
+
+<form th:action="@{/user-search-list}" method="POST"
+		th:object="${userSearchFrom}">
+	<table class="condition-table">
+		<tr>
+			<th>【ユーザ名】（部分一致）</th>
+			<th>【地域】</th>
+		</tr>
+		<tr>
+			<td><input type="text" th:field="*{userName}"></td>
+			<td>
+				<select th:field="*{areaCode}">
+					<option value="">(全て)</option>
+					<option th:each="status : ${statusCodeList}" 
+						th:value="${status.areaCode}" 
+						th:text="${status.areaCode + ':' + status.areaName}"
+						th:selected="${status.areaCode == areaCode}" >
+					</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+   	<input type="submit" value="検索" class="btn">
+</form>
+
+<!-- ------------一覧---------------- -->
+<div th:if="${taskSummaryList} != null">
+	<h2>検索結果一覧</h2>
+
+	<table class="task-list">
+		<tr>
+			<th>ユーザ名</th><th>地域名</th><th>email</th>
+		</tr>
+		<tr th:each="user : ${taskSummaryList}">
+			<td th:text="${user.userName}"></td>
+			<td th:text="${user.area.areaName}"></td><!-- ここのarea.areaNameがポイント-->
+			<td th:text="${user.email}"></td>
+
+		</tr>
+
+	</table>
+</div>
+
+</body>
+</html>
